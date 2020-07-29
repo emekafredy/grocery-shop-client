@@ -1,0 +1,9 @@
+@import "variables";
+@import "colors";
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Grenze+Gotisch:wght@800&family=Pacifico&family=Rowdies:wght@700&display=swap');
+
+@mixin respond-to($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}

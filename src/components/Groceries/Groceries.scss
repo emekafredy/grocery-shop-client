@@ -1,0 +1,83 @@
+@import "../../shared/mixins";
+
+.groceries__container {
+  flex-grow: 1;
+  text-align: center;
+  padding: $global-padding;
+
+  .groceries__header {
+    margin-top: $global-margin * 3;
+  }
+
+  // Grocery card
+  .grocery-card {
+    width: 90%;
+    margin: auto;
+
+    .grocery-card__vendor-avatar {
+      background-color: $white;
+      color: $green-1;
+      font-size: $global-font;
+    }
+    .grocery-card__image {
+      height: 0;
+      padding-top: 56.25%;
+    }
+
+    .grocery-card__name {
+      text-align: left;
+      font-size: $global-font;
+      color: $green-1;
+    }
+
+    .grocery-card__price {
+      text-align: left;
+      font-size: 0.9rem;
+      font-weight: bold;
+
+      .grocery-card__discount-price { margin-right: $global-margin; }
+      .grocery-card__main-price {
+        color: $silver-1;
+        text-decoration: line-through;
+      }
+    }
+
+    .grocery-card__actions {
+      margin-bottom: $global-margin;
+
+      .grocery-card__cart {
+        border: 1px solid $green-1;
+        background-color: $green-1;
+        color: $white;
+        padding: ($global-padding * 0.4) ($global-padding * 1.2);
+        border-radius: 3px;
+        transition: 0.3s;
+        
+        &:hover {
+          background-color: $white;
+          color: $green-1;
+        }
+      }
+      .grocery-card__details {
+        border: 1px solid $green-1;
+        color: $green-1;
+        margin-right: $global-margin * 0.5;
+        margin-left: auto;
+        padding: ($global-padding * 0.4) ($global-padding * 1.2);
+        border-radius: 3px;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: $green-1;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+
+// media query
+@include respond-to('small') {
+  .groceries__container { padding: $global-padding $global-padding * 4; }
+}
