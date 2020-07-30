@@ -4,16 +4,20 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { NavBar } from './components/NavBar';
 import { HomePage } from './view/HomePage/index';
 
+import { GroceriesProvider } from './context/goceries/GroceriesContext';
+
 import './App.scss';
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-      </Switch>
-    </Router>
+    <GroceriesProvider>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+        </Switch>
+      </Router>
+    </GroceriesProvider>
   );
 }
 
