@@ -2,10 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './NavBar.scss';
+import { Categories } from '../Categories';
 
+import { CategoriesProvider } from '../../context/categories';
+ 
 export const NavBar = () => {
   return (
-    <div>
+    <CategoriesProvider>
       <nav className="navbar">
         <Link to='/' className="navbar__brand-text">Grocery Shop</Link>
         <input className="navbar__menu-btn" type="checkbox" id="navbar__menu-btn" />
@@ -28,18 +31,7 @@ export const NavBar = () => {
                Categories <i className="angle down icon"></i>
               </div> 
             </Link>
-            <ul className="navbar__profile-dropdown">
-              <li><Link to="/">Profile</Link></li>
-              <li><Link to="/">Orders</Link></li>
-              <li><Link to="/">Logout</Link></li>
-              <li><Link to="/">Profile</Link></li>
-              <li><Link to="/">Orders</Link></li>
-              <li><Link to="/">Logout</Link></li>
-              <li><Link to="/">Profile</Link></li>
-              <li><Link to="/">Orders</Link></li>
-              <li><Link to="/">Logout</Link></li>
-              <li><Link to="/">Logout</Link></li>
-            </ul>
+            <Categories />
           </li>
           <li className="navbar__menu-list-item">
             <Link
@@ -85,6 +77,6 @@ export const NavBar = () => {
           </li> */}
         </ul>
       </nav> <br/><br/><br/>
-    </div>
+    </CategoriesProvider>
   )
 }

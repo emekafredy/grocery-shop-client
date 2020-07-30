@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 
 // components
-import { Grocery } from '../Grocery/index';
+import { Grocery } from '../Grocery';
 
 import './Groceries.scss';
 
@@ -16,7 +16,7 @@ export const Groceries = ({ groceries, title }) => {
   
       <Grid container spacing={3}>
         {
-          groceries.groceries && groceries.groceries.map(grocery => {
+          groceries?.map(grocery => {
             return (
               <Grocery key={grocery.id} grocery={grocery}/>
             );

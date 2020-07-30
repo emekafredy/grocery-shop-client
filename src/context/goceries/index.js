@@ -26,7 +26,7 @@ export const GroceriesProvider = props => {
     return (
         <GroceriesContext.Provider
             value={{
-                groceries: state.groceries,
+                groceries: state.groceries.groceries,
                 loading: state.loading,
                 getGroceries: getGroceries,
             }}

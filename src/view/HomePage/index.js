@@ -6,7 +6,7 @@ import { Groceries } from '../../components/Groceries';
 import { Loader } from '../../components/Loader';
 
 // context
-import { GroceriesContext } from '../../context/goceries/GroceriesContext';
+import { GroceriesContext } from '../../context/goceries';
 
 export const HomePage = () => {
   const groceriesContext = useContext(GroceriesContext);
@@ -23,9 +23,9 @@ export const HomePage = () => {
      {
       loading ? <Loader /> 
       : <Groceries
-          groceries={ groceries }
-          title="Featured Products"
-        />
+        groceries={ groceries }
+        title="Featured Products"
+      />
      }
     </div>
   );
