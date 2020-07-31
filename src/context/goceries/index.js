@@ -6,7 +6,7 @@ export const GroceriesContext = createContext();
 export const GroceriesProvider = props => {
     const initialState = {
         groceries: [],
-        loading: true
+        loading: true,
     };
 
     const [state, dispatch] = useReducer(GroceriesReducer, initialState);
@@ -22,6 +22,18 @@ export const GroceriesProvider = props => {
             console.log(err);
         }
     };
+
+    const searchByKeyword = async (searchTerm) => {
+      try {
+          dispatch({ type: 'START_REQUEST' });
+          const res = await fetch(`http://localhost:8000/api/groceries?keyword=${searchTerm}`);
+          const data = await res.json();
+          dispatch({ type: 'COMPLETE_REQUEST' });
+          dispatch({ type: 'SET_SEARCH_RESULT', payload: data });
+      } catch (err) {
+          console.log(err);
+      }
+    };
   
     return (
         <GroceriesContext.Provider
@@ -29,6 +41,7 @@ export const GroceriesProvider = props => {
                 groceries: state.groceries.groceries,
                 loading: state.loading,
                 getGroceries: getGroceries,
+                searchByKeyword: searchByKeyword
             }}
         >
             {props.children}

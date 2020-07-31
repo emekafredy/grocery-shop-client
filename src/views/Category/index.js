@@ -16,7 +16,6 @@ export const GroceriesCategory = ({ id }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  console.log('PROPS', category);
   return (
     <div>
      {
