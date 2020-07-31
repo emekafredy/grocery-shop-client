@@ -17,7 +17,7 @@ export const Categories = () => {
     <ul className="navbar__profile-dropdown">
       {
         categories?.map(category => {
-          return <li key={ category.id }><Link to="/"> { category.name } </Link></li>
+          return <li key={ category.id }><Link to={`/category/${category.id}`}> { category.name } </Link></li>
         })
       }
     </ul>

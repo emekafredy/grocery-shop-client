@@ -23,10 +23,7 @@ export const NavBar = () => {
             </div>
           </li>
           <li className="navbar__menu-list-item navbar__category">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
+            <Link className="navbar__menu-list-item-link">
               <div className="navbar__menu-item-title navbar__category-title">
                Categories <i className="angle down icon"></i>
               </div> 

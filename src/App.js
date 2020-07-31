@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { NavBar } from './components/NavBar';
-import { HomePage } from './view/HomePage/index';
+import { HomePage } from './views/HomePage';
+import { Category } from './views/Category';
 
 import { GroceriesProvider } from './context/goceries';
 
@@ -14,7 +15,8 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route path="/" exact component={HomePage} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/category/:id" component={Category} />
         </Switch>
       </Router>
     </GroceriesProvider>
