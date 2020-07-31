@@ -1,11 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import './NavBar.scss';
+import { Categories } from '../Categories';
 
-export const NavBar = () => {
+import { CategoriesProvider } from '../../context/categories';
+ 
+export const NavBar = (props) => {
+  const [keyword, setKeyword] = useState('');
+  const history = useHistory();
+
+  const handleGroceriesSearch = (event) => {
+    event.preventDefault();
+    history.push(`/search/${keyword}`)
+  }
+
+  const handleOnChange = (event) => {
+    setKeyword(event.target.value)
+  }
+
+  const handleOnKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      history.push(`/search/${keyword}`)
+    }
+  }
+
   return (
-    <div>
+    <CategoriesProvider>
       <nav className="navbar">
         <Link to='/' className="navbar__brand-text">Grocery Shop</Link>
         <input className="navbar__menu-btn" type="checkbox" id="navbar__menu-btn" />
@@ -14,32 +35,29 @@ export const NavBar = () => {
           <li className="navbar__menu-list-item">
             <div className="navbar__search-bar-container">
               <div className="navbar__search-bar">
-                <input type="text" className="navbar__search-input" placeholder="What are you looking for?" />
-                <button type="submit" className="navbar__search-button"> Search </button>
+                <input
+                  type="text"
+                  className="navbar__search-input"
+                  placeholder="Which product are you looking for?"
+                  onChange={(event) => handleOnChange(event)}
+                  onKeyDown={(event) => handleOnKeyDown(event) }
+                />
+                <button 
+                  className="navbar__search-button"
+                  onClick={(event) => handleGroceriesSearch(event)}
+                > 
+                  Search 
+                </button>
               </div>
             </div>
           </li>
           <li className="navbar__menu-list-item navbar__category">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
+            <span className="navbar__menu-list-item-link">
               <div className="navbar__menu-item-title navbar__category-title">
                Categories <i className="angle down icon"></i>
               </div> 
-            </Link>
-            <ul className="navbar__profile-dropdown">
-              <li><Link to="/">Profile</Link></li>
-              <li><Link to="/">Orders</Link></li>
-              <li><Link to="/">Logout</Link></li>
-              <li><Link to="/">Profile</Link></li>
-              <li><Link to="/">Orders</Link></li>
-              <li><Link to="/">Logout</Link></li>
-              <li><Link to="/">Profile</Link></li>
-              <li><Link to="/">Orders</Link></li>
-              <li><Link to="/">Logout</Link></li>
-              <li><Link to="/">Logout</Link></li>
-            </ul>
+            </span>
+            <Categories />
           </li>
           <li className="navbar__menu-list-item">
             <Link
@@ -85,6 +103,6 @@ export const NavBar = () => {
           </li> */}
         </ul>
       </nav> <br/><br/><br/>
-    </div>
+    </CategoriesProvider>
   )
 }
