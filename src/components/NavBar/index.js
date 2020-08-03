@@ -71,18 +71,12 @@ export const NavBar = (props) => {
             </Link>
           </li>
           <li className="navbar__menu-list-item">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
+            <Link to='/auth/register' className="navbar__menu-list-item-link">
               <div className="navbar__menu-item-title"> Register </div> 
             </Link>
           </li>
           <li className="navbar__menu-list-item">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
+            <Link to='/auth/login' className="navbar__menu-list-item-link">
               <div className="navbar__menu-item-title"> Login </div> 
             </Link>
           </li>

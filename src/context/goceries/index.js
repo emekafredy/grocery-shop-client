@@ -2,7 +2,7 @@ import React, { useReducer, createContext } from 'react';
 import GroceriesReducer from './GroceriesReducer';
 
 // API
-import { getGroceriesAPI, searchByKeywordAPI } from '../../services/api/groceries';
+import { getGroceriesAPI, searchByKeywordAPI } from '../../api/groceries';
 
 export const GroceriesContext = createContext();
 

@@ -1,0 +1,61 @@
+@import "../../shared/mixins";
+
+.auth__container {
+  flex-grow: 1;
+  text-align: center;
+  padding: $global-padding;
+
+  .auth__header {
+    margin-top: $global-margin * 3;
+    
+    h1 { color: $green-2; }
+    span {
+      font-size: $global-font;
+      font-style: italic;
+    }
+  }
+
+  .auth__form {
+    padding: $global-padding * 2;
+    margin: ($global-margin * 2) 0;
+    box-shadow: 0 0 5px $silver-1;
+    -webkit-box-shadow: 0 0 5px $silver-1;
+    -moz-box-shadow: 0 0 5px $silver-1;
+    border-radius: $global-padding * 0.5;
+
+    .auth__input-field {
+      width: 100%;
+    }
+
+    .auth__submit-btn {
+      width: 100%;
+      margin: auto;
+      margin-top: $global-margin * 2;
+      background: $green-1;
+      color: $white;
+      padding: ($global-padding * 0.7) 0;
+      transition: 0.5s;
+
+      &:hover { background: $green-2; }
+    }
+
+    .auth__redirect {
+      text-align: center;
+      font-size: $global-font * 1.1;
+      margin-top: $global-margin;
+    }
+  }
+}
+
+// media query
+@include respond-to('small') {
+  .auth__container {
+    width: 40%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+
+    .auth__form {
+      .auth__submit-btn { width: 35%; }
+    }
+  }
+}
