@@ -8,13 +8,13 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
-        isAuthenticated: true
+        loading: false
       };
     case SET_ERRORS:
       return {
         ...state,
         errors: action.payload,
-        isAuthenticated: false,
+        loading: false
       };
     case START_REQUEST:
       return {

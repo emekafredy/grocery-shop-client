@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { TextField, Grid, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { TextField, Grid, Button, CircularProgress } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
 
 // context
 import { AuthContext } from '../../../context/auth/index';
@@ -15,9 +15,12 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const history = useHistory();
 
   const authContext = useContext(AuthContext);
-  const  { registerUser, errors } = authContext;
+  const  { user, registerUser, errors, loading } = authContext;
+
+  if (user.id) history.push('/');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +40,7 @@ export const Register = () => {
       
       <form className="auth__form" noValidate autoComplete="off" onSubmit={(e) => handleFormSubmit(e)}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <TextField
               className="auth__input-field"
               required
@@ -47,7 +50,7 @@ export const Register = () => {
               onChange={e => setName(e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <TextField
               className="auth__input-field"
               required
@@ -57,7 +60,7 @@ export const Register = () => {
               onChange={e => setEmail(e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <TextField
               className="auth__input-field"
               required
@@ -67,7 +70,7 @@ export const Register = () => {
               onChange={e => setPassword(e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <TextField
               className="auth__input-field"
               required
@@ -82,8 +85,9 @@ export const Register = () => {
               className="auth__submit-btn"
               variant="contained"
               type="submit"
+              disabled={loading}
             > 
-              Register
+              { loading ? <CircularProgress className="auth__submit-loader" size={20} /> : 'Register' }
             </Button>
           </Grid>
         </Grid>

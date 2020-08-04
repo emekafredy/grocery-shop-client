@@ -1,8 +1,12 @@
+// TODO: REFACTOR AUTH CONTEXT
+
+
 import React, { useReducer, createContext } from 'react';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 import AuthReducer from './AuthReducer';
-import { setUser, setErrors, startRequest, completeRequest, logout } from './AuthActions';
+import { setUser, setErrors, startRequest, completeRequest } from './AuthActions';
 
 // API
 import { registerUserAPI, loginUserAPI } from '../../api/auth';
@@ -10,12 +14,11 @@ import { setToken } from '../../utils/setToken';
 
 export const AuthContext = createContext();
 
+
 export const AuthProvider = props => {
   const initialState = {
-    user: {},
     errors: [],
-    loading: true,
-    isAuthenticated: false,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -40,30 +43,62 @@ export const AuthProvider = props => {
 
   const loginUser = async (loginData) => {
     try {
-        dispatch({ type: 'START_REQUEST' });
-        const response = await loginUserAPI(loginData);
-        const { data } = response;
-        dispatch({ type: 'COMPLETE_REQUEST' });
-        dispatch({ type: 'SET_USER', payload: data });
+      dispatch(startRequest());
+      const response = await loginUserAPI(loginData);
+      const { data } = response;
+
+      await localStorage.setItem('jwtToken', data.token);
+      setToken(data.token);
+
+      const decoded = await jwt_decode(data.token);
+
+      dispatch(completeRequest());
+      dispatch(setUser(decoded));
     } catch (err) {
-        console.log(err);
+      dispatch(setErrors(err.response.data));
     }
   };
 
-  const setCurrentUser = async (decoded) => {
-    dispatch(setUser(decoded));
-  }
+  const logoutUser = () => {
+    try {
+      dispatch(startRequest());
+      localStorage.removeItem("jwtToken");
+      dispatch(completeRequest());
+    } catch (err) {
+      dispatch(setErrors(err.response.data));
+    }
+  };
+
+  const setUserStatus = () => {
+    let user;
+    const token = window.localStorage.getItem("jwtToken");
+    if (!token) return user = {};
+
+    user = jwt_decode(token);
+    if (!!token) {
+      const currentTime = Date.now() / 1000;
+      if (user.exp < currentTime) {
+        delete axios.defaults.headers['authorization'];
+        localStorage.removeItem("jwtToken");
+        return user = {};
+      }
+
+      axios.defaults.headers['authorization'] = token
+      return user;
+    }
+  };
+
+  const user = setUserStatus();
 
   return (
     <AuthContext.Provider
       value={{
         registerUser: registerUser,
         loginUser: loginUser,
-        user: state.user,
+        logoutUser: logoutUser,
         errors: state.errors.errors,
         loading: state.loading,
-        setCurrentUser: setCurrentUser,
-        isAuthenticated: state.isAuthenticated
+        user
       }}
     >
       {props.children}

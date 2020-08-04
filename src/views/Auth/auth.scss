@@ -37,6 +37,8 @@
       transition: 0.5s;
 
       &:hover { background: $green-2; }
+
+      .auth__submit-loader { color: $white; }
     }
 
     .auth__redirect {
