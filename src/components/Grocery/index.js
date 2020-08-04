@@ -22,7 +22,7 @@ export const Grocery = ({ grocery }) => {
             <h3 className="grocery-card__name"> { grocery.name } </h3>
             <p className="grocery-card__price">
               <span className="grocery-card__discount-price"> &#8358;{ (grocery.price - grocery.discount).toFixed(2) } </span>
-              <span className="grocery-card__main-price"> &#8358;{ grocery.price } </span>
+              { grocery?.discount > 0 ? <span className="grocery-card__main-price"> &#8358;{ grocery.price } </span> : '' }
             </p>
           </div>
         </CardContent>
@@ -30,7 +30,7 @@ export const Grocery = ({ grocery }) => {
           <IconButton className="grocery-card__cart" aria-label="add to cart">
             <ShoppingCartIcon />
           </IconButton>
-          <Link to="/" className="grocery-card__details">
+          <Link to={`/grocery/${grocery.id}`} className="grocery-card__details">
             Details
           </Link>
         </CardActions>

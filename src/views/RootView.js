@@ -9,6 +9,7 @@ import { Category } from './Category';
 import { Search } from './Search';
 import { Register } from './Auth/Register';
 import { Login } from './Auth/Login';
+import { GroceryDetails } from './GroceryDetails/index';
 
 
 export const RootView = () => {
@@ -19,6 +20,7 @@ export const RootView = () => {
         <Route exact path="/" component={ HomePage } />
         <Route exact path="/category/:id" component={ Category } />
         <Route exact path="/search/:keyword" component={ Search } />
+        <Route exact path="/grocery/:id" component={ GroceryDetails } />
         <Route exact path="/auth/register" component={ Register } />
         <Route exact path="/auth/login" component={ Login } />
       </Switch>

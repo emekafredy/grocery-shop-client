@@ -10,3 +10,7 @@ export const getGroceriesAPI = () => {
 export const searchByKeywordAPI = (searchTerm) => {
   return axios.get(`${baseUrl}/groceries?keyword=${searchTerm}`);
 }
+
+export const getGroceryAPI = (id) => {
+  return axios.get(`${baseUrl}/grocery/${id}`);
+}
