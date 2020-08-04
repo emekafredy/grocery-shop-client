@@ -10,6 +10,11 @@ export default (state, action) => {
           ...state,
           groceries: action.payload
       };
+    case 'SET_GROCERY':
+      return {
+          ...state,
+          grocery: action.payload
+      };
     case 'START_REQUEST':
       return {
           ...state,

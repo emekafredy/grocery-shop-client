@@ -1,0 +1,101 @@
+@import "../../shared/mixins";
+
+.grocery-details {
+  .grocery-details__container {
+    width: 90%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+
+    .grocery-details__image-container{
+      padding: $global-padding * 4;
+
+      .grocery-details__image { width: 500px; }
+    }
+
+    .grocery-details__description-container {
+      padding: $global-padding * 4;
+      text-align: left;
+
+      .grocery-details__description__vendor-tag {
+        color: $silver-1;
+        font-size: $global-font * 0.9;
+      }
+
+      hr { opacity: 0.3; }
+
+      .grocery-details__description__cart {
+        border: 1px solid $green-1;
+        background-color: $green-1;
+        color: $white;
+        padding: ($global-padding * 0.8) ($global-padding * 3);
+        border-radius: 3px;
+        transition: 0.3s;
+        font-size: $global-font * 1.2;
+        margin-bottom: $global-margin;
+        
+        &:hover {
+          background-color: $white;
+          color: $green-1;
+        }
+      }
+
+      .grocery-details__description__main-price {
+        font-size: $global-font;
+        margin-left: $global-margin;
+        color: $silver-1;
+        text-decoration: line-through;
+      }
+
+      .grocery-details__description__quantity,
+      .grocery-details__description__quantity-decrement,
+      .grocery-details__description__quantity-increment {
+        border: 1px solid $green-1;
+        height: 40px;
+        user-select: none;
+      }
+
+      .grocery-details__description__quantity-decrement,
+      .grocery-details__description__quantity-increment {
+        display: inline-block;
+        width: 35px;
+        line-height: 38px;
+        background: $green-1;
+        color: $white;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:active {
+          background: $green-2;
+        }
+      }
+
+      .grocery-details__description__quantity-title {
+        font-weight: bold;
+        font-size: $global-font * 1.4;
+        margin-right: $global-margin;
+      }
+      .grocery-details__description__quantity-decrement {
+        border-right: none;
+        border-radius: 4px 0 0 4px;
+      }
+      .grocery-details__description__quantity {
+        width: 50px;
+        line-height: 38px;
+        vertical-align: top;
+        text-align: center;
+        outline: none;
+      }
+      .grocery-details__description__quantity-increment {
+        border-left: none;
+        border-radius: 0 4px 4px 0;
+      }
+    }
+
+    .grocery-details__delivery-estimate {
+      color: $silver-1;
+      font-style: italic;
+      font-weight: bold;
+    }
+  }
+}
