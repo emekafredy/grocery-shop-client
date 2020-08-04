@@ -2,7 +2,7 @@ import React, { useReducer, createContext } from 'react';
 import CategoriesReducer from './CategoriesReducer';
 
 // API
-import { getCategoriesAPI, getCategoryAPI } from '../../services/api/categories';
+import { getCategoriesAPI, getCategoryAPI } from '../../api/categories';
 
 export const CategoriesContext = createContext();
 

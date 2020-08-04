@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import './NavBar.scss';
 import { Categories } from '../Categories';
 
 import { CategoriesProvider } from '../../context/categories';
+import { AuthContext } from '../../context/auth';
  
-export const NavBar = (props) => {
+export const NavBar = () => {
   const [keyword, setKeyword] = useState('');
   const history = useHistory();
+  const { user, logoutUser } = useContext(AuthContext);
 
   const handleGroceriesSearch = (event) => {
     event.preventDefault();
@@ -24,6 +26,40 @@ export const NavBar = (props) => {
       history.push(`/search/${keyword}`)
     }
   }
+
+  const logUserOut = () => {
+    logoutUser()
+  }
+
+  const profileNav = (
+    <li className="navbar__menu-list-item navbar__profile">
+      <Link to='/' className="navbar__menu-list-item-link">
+        <div className="navbar__menu-item-title">
+          Hi, {user?.firstName} <i className="angle down icon"></i>
+        </div> 
+      </Link>
+      <ul className="navbar__profile-dropdown">
+        <li><Link to="/">Profile</Link></li>
+        <li><Link to="/">Orders</Link></li>
+        <li><Link to="/" onClick={() => logUserOut()}>Logout</Link></li>
+      </ul>
+    </li>
+  );
+  
+  const authNav = (
+    <>
+    <li className="navbar__menu-list-item">
+      <Link to='/auth/register' className="navbar__menu-list-item-link">
+        <div className="navbar__menu-item-title"> Register </div> 
+      </Link>
+    </li>
+    <li className="navbar__menu-list-item">
+      <Link to='/auth/login' className="navbar__menu-list-item-link">
+        <div className="navbar__menu-item-title"> Login </div> 
+      </Link>
+    </li>
+    </>
+  );  
 
   return (
     <CategoriesProvider>
@@ -70,37 +106,7 @@ export const NavBar = (props) => {
               </div>
             </Link>
           </li>
-          <li className="navbar__menu-list-item">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
-              <div className="navbar__menu-item-title"> Register </div> 
-            </Link>
-          </li>
-          <li className="navbar__menu-list-item">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
-              <div className="navbar__menu-item-title"> Login </div> 
-            </Link>
-          </li>
-          {/* <li className="navbar__menu-list-item navbar__profile">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
-              <div className="navbar__menu-item-title">
-                Hi, Emeka <i className="angle down icon"></i>
-              </div> 
-            </Link>
-            <ul className="navbar__profile-dropdown">
-              <li><Link to="/">Profile</Link></li>
-              <li><Link to="/">Orders</Link></li>
-              <li><Link to="/">Logout</Link></li>
-            </ul>
-          </li> */}
+          { user?.id ? profileNav : authNav }
         </ul>
       </nav> <br/><br/><br/>
     </CategoriesProvider>

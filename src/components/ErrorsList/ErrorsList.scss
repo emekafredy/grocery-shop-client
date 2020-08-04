@@ -1,0 +1,13 @@
+@import "../../shared/mixins";
+
+.error-list__container {
+  text-align: left;
+  border: 1px solid $red-1;
+  border-radius: 5px;
+  background: $red-2;
+  color: $red-3;
+
+  ul {
+    li { padding-bottom: $global-padding * 0.5; }
+  }
+}
