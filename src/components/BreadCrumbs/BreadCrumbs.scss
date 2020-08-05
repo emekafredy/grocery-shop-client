@@ -1,0 +1,7 @@
+@import "../../shared/mixins";
+
+.breadcrumbs-container {
+  padding-left: $global-padding * 5;
+  margin-top: $global-margin * 4;
+  margin-bottom: $global-margin * -3;
+}

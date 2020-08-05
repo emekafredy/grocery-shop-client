@@ -44,8 +44,8 @@ export const GroceriesProvider = props => {
       dispatch({ type: 'START_REQUEST' });
       const response = await getGroceryAPI(id);
       const { data } = response
-      dispatch({ type: 'COMPLETE_REQUEST' });
       dispatch({ type: 'SET_GROCERY', payload: data });
+      dispatch({ type: 'COMPLETE_REQUEST' });
     } catch (err) {
       console.log(err);
     }

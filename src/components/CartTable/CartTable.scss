@@ -1,0 +1,21 @@
+@import "../../shared/mixins";
+
+.shopping-cart__details {
+  .shopping-cart__details-image {
+    width: 100px;
+  }
+
+  .shopping-cart__details__remove {
+    color: $red-3;
+  }
+
+  .shopping-cart__details-price {
+    font-weight: bold;
+    font-size: $global-font * 1.2;
+  }
+  .shopping-cart__details-price-calc {
+    color: $silver-1;
+    font-size: $global-font * 0.8;
+    font-style: italic;
+  }
+}

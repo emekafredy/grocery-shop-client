@@ -96,10 +96,7 @@ export const NavBar = () => {
             <Categories />
           </li>
           <li className="navbar__menu-list-item">
-            <Link
-              to='/'
-              className="navbar__menu-list-item-link"
-            >
+            <Link to='/cart' className="navbar__menu-list-item-link">
               <div className="navbar__menu-item-title">
                 <i className="cart arrow down icon"></i>
                 Cart
