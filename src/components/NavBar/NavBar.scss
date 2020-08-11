@@ -227,7 +227,7 @@
   }
 }
 
-@include respond-to('small') {
+@include respond-to('medium') {
   .navbar {
     .navbar__menu-list {
       clear: none;

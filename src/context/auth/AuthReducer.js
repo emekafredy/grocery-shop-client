@@ -1,5 +1,5 @@
 import {
-  SET_USER, SET_ERRORS, START_REQUEST, COMPLETE_REQUEST
+  SET_USER, SET_ERRORS, START_REQUEST, COMPLETE_REQUEST, SET_USER_PROFILE
 } from './AuthActions';
 
 export default (state, action) => {
@@ -8,6 +8,12 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
+        loading: false
+      };
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
         loading: false
       };
     case SET_ERRORS:

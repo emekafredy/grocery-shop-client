@@ -78,6 +78,6 @@
 
 
 // media query
-@include respond-to('small') {
+@include respond-to('medium') {
   .groceries__container { padding: $global-padding $global-padding * 4; }
 }

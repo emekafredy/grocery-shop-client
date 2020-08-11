@@ -10,3 +10,7 @@ export const registerUserAPI = (signUpData) => {
 export const loginUserAPI = (loginData) => {
   return axios.post(`${baseUrl}/users/login`, loginData);
 }
+
+export const getUserAPI = () => {
+  return axios.get(`${baseUrl}/user`)
+}

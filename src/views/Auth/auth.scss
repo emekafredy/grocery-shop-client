@@ -50,7 +50,7 @@
 }
 
 // media query
-@include respond-to('small') {
+@include respond-to('medium') {
   .auth__container {
     width: 40%;
     margin: auto;

@@ -38,13 +38,13 @@ export const NavBar = () => {
 
   const profileNav = (
     <li className="navbar__menu-list-item navbar__profile">
-      <Link to='/' className="navbar__menu-list-item-link">
+      <span className="navbar__menu-list-item-link">
         <div className="navbar__menu-item-title">
           Hi, {user?.firstName} <i className="angle down icon"></i>
         </div> 
-      </Link>
+      </span>
       <ul className="navbar__profile-dropdown">
-        <li><Link to="/">Profile</Link></li>
+        <li><Link to="/user">Profile</Link></li>
         <li><Link to="/">Orders</Link></li>
         <li><Link to="/" onClick={() => logUserOut()}>Logout</Link></li>
       </ul>

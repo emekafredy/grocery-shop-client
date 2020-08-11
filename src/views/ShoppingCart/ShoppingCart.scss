@@ -14,7 +14,7 @@
 }
 
 // media query
-@include respond-to('small') {
+@include respond-to('medium') {
   .shopping-cart {
     width: 80%;
     margin: auto;

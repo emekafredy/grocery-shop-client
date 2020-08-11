@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { NavBar } from '../components/NavBar';
-// import { PrivateRoute } from '../components/PrivateRoute';
+import { PrivateRoute } from '../components/PrivateRoute';
 
 import { HomePage } from './HomePage';
 import { Category } from './Category';
@@ -11,6 +11,7 @@ import { Register } from './Auth/Register';
 import { Login } from './Auth/Login';
 import { GroceryDetails } from './GroceryDetails';
 import { ShoppingCart } from './ShoppingCart';
+import { UserProfile } from './UserProfile';
 
 
 export const RootView = () => {
@@ -25,6 +26,7 @@ export const RootView = () => {
         <Route exact path="/cart" component={ ShoppingCart } />
         <Route exact path="/auth/register" component={ Register } />
         <Route exact path="/auth/login" component={ Login } />
+        <PrivateRoute exact path="/user" component={ UserProfile } />
       </Switch>
     </Router>
   );

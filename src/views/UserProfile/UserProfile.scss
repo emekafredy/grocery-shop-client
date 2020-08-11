@@ -1,0 +1,118 @@
+@import "../../shared/mixins";
+
+.profile__container {
+  text-align: center;
+  margin-top: $global-margin * 2;
+
+  .profile__header {
+    font-family: 'Berkshire Swash';
+  }
+
+  .profile__card {
+    width: 95%;
+    margin: auto;
+
+    .profile__image {
+      width: 200px;
+      border-radius: 100%;
+      margin-bottom: $global-margin * 5;
+    }
+
+    .profile__account-details {
+      margin-bottom: $global-margin * 5;
+
+      .profile__account-details-title {
+        float: left;
+        font-size: $global-font;
+        font-family: 'Berkshire Swash';
+      }
+
+      hr { opacity: 0.3; }
+
+      .profile__name,
+      .profile__email {
+        text-align: left;
+      }
+    }
+  
+
+    .profile__shipping-addresses {
+
+      .profile__shipping-addresses__title {
+        float: left;
+        font-size: $global-font;
+        font-family: 'Berkshire Swash';
+      }
+
+      hr { opacity: 0.3; }
+      div { hr { opacity: 0.6; } }
+  
+      .profile__shipping-addresses__add {
+        float: right;
+        font-size: $global-font;
+  
+        .profile__shipping-addresses__add-icon {
+          background: $green-1;
+          color: $white;
+          border-radius: 100%;
+          &:hover {
+            cursor: pointer;
+            background: $green-2;
+          }
+        }
+      }
+  
+      .profile__shipping-addresses__list {
+        float: left;
+        font-weight: bold;
+      }
+  
+      .profile__shipping-addresses__list-edit {
+        float: right;
+        font-size: $global-font;
+        color: $green-1;
+  
+        &:hover {
+          cursor: pointer;
+          color: $green-2;
+        }
+      }
+
+      .profile__shipping-addresses__list__address-name { text-align: left; }
+    }
+  }
+}
+
+
+// media query
+@include respond-to('small') {
+  .profile__container {
+    width: 90%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}
+
+@include respond-to('medium') {
+  .profile__container {
+    width: 80%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}
+
+@include respond-to('large') {
+  .profile__container {
+    width: 60%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}
+
+@include respond-to('xlarge') {
+  .profile__container {
+    width: 40%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}

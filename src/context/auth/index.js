@@ -6,10 +6,10 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
 import AuthReducer from './AuthReducer';
-import { setUser, setErrors, startRequest, completeRequest } from './AuthActions';
+import { setUser, setErrors, startRequest, completeRequest, setUserProfile } from './AuthActions';
 
 // API
-import { registerUserAPI, loginUserAPI } from '../../api/auth';
+import { registerUserAPI, loginUserAPI, getUserAPI } from '../../api/auth';
 import { setToken } from '../../utils/setToken';
 
 export const AuthContext = createContext();
@@ -19,6 +19,7 @@ export const AuthProvider = props => {
   const initialState = {
     errors: [],
     loading: false,
+    profile: {}
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -54,6 +55,19 @@ export const AuthProvider = props => {
 
       dispatch(completeRequest());
       dispatch(setUser(decoded));
+    } catch (err) {
+      dispatch(setErrors(err.response.data));
+    }
+  };
+
+  const getUser = async () => {
+    try {
+      dispatch(startRequest());
+      const response = await getUserAPI();
+      const { data } = response;
+
+      dispatch(completeRequest());
+      dispatch(setUserProfile(data));
     } catch (err) {
       dispatch(setErrors(err.response.data));
     }
@@ -95,10 +109,12 @@ export const AuthProvider = props => {
       value={{
         registerUser: registerUser,
         loginUser: loginUser,
+        getUser: getUser,
         logoutUser: logoutUser,
         errors: state.errors.errors,
         loading: state.loading,
-        user
+        user,
+        profile: state.profile.profile
       }}
     >
       {props.children}
