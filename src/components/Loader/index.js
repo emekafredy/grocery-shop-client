@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
+    marginTop: '8rem'
   },
   loader: {
     color: '#00b300',

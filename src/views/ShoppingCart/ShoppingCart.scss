@@ -1,0 +1,28 @@
+@import "../../shared/mixins";
+
+.shopping-cart {
+  width: 100%;
+
+  .shopping-cart__table-container {
+    margin-top: $global-margin * 5;
+
+    .shopping-cart__table-head {
+      font-size: $global-font;
+      font-weight: bold;
+    }
+  }
+}
+
+// media query
+@include respond-to('small') {
+  .shopping-cart {
+    width: 80%;
+    margin: auto;
+
+    .shopping-cart__table-container {
+      width: 95%;
+      margin: auto;
+      margin-top: $global-margin * 5;
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import React, { useEffect, useContext } from 'react';
+import { Link, Typography } from '@material-ui/core';
 
 // components
 import { Groceries } from '../../components/Groceries';
 import { Loader } from '../../components/Loader';
+import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 // context
 import { CategoriesContext, CategoriesProvider } from '../../context/categories';
@@ -19,11 +21,17 @@ export const GroceriesCategory = ({ id }) => {
   return (
     <div>
      {
-      loading ? <Loader /> 
-      : <Groceries
-        groceries={ category?.groceries }
-        title={ category?.name }
-      />
+      loading ? <Loader />
+      : <div>
+          <BreadCrumbs>
+            <Link color="inherit" href="/">
+              Home
+            </Link>
+            <Typography> Category </Typography>
+            <Typography color="textPrimary"> { category?.name } </Typography>
+          </BreadCrumbs>
+          <Groceries groceries={ category?.groceries } />
+        </div>
      }
     </div>
   );
