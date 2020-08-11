@@ -2,7 +2,7 @@
 Client side for a simple shopping app for groceries ([Backend](https://github.com/emekafredy/grocery-shop))
 
 * Demo site
-  - [Grocery-Shope-client](https://grocery-shop-client.herokuapp.com/) (Development still in progress)
+  - [Grocery-Shop-client](https://grocery-shop-client.herokuapp.com/) (Development still in progress)
 
 * Local Set up
   - Set up and start the [server](https://github.com/emekafredy/grocery-shop).

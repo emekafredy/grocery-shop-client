@@ -84,6 +84,7 @@ export const NavBar = () => {
                 <input
                   type="text"
                   className="navbar__search-input"
+                  aria-label="search for groceries"
                   placeholder="Which product are you looking for?"
                   onChange={(event) => handleOnChange(event)}
                   onKeyDown={(event) => handleOnKeyDown(event) }
@@ -109,7 +110,7 @@ export const NavBar = () => {
             <Link to='/cart' className="navbar__menu-list-item-link">
               <div className="navbar__menu-item-title">
                 <i className="cart arrow down icon"></i>
-                Cart <span className="navbar__total-cart-items"> { cart.totalItems } </span>
+                Cart { cart.totalItems ? <span className="navbar__total-cart-items"> { cart.totalItems } </span> : '' }
               </div>
             </Link>
           </li>
