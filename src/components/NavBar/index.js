@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 // component
@@ -15,7 +15,7 @@ export const NavBar = () => {
   const [keyword, setKeyword] = useState('');
   const history = useHistory();
   const { user, logoutUser } = useContext(AuthContext);
-  const { cart } = useContext(CartContext);
+  const { cart, getCart } = useContext(CartContext);
 
   const handleGroceriesSearch = (event) => {
     event.preventDefault();
@@ -64,7 +64,12 @@ export const NavBar = () => {
       </Link>
     </li>
     </>
-  );  
+  ); 
+  
+  useEffect(() => {
+    getCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart.totalItems]);
 
   return (
     <CategoriesProvider>

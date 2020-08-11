@@ -4,6 +4,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 // context
 import { GroceriesContext } from '../../context/goceries';
+import { CartContext } from '../../context/cart/index';
 
 // components
 import { Loader } from '../../components/Loader';
@@ -14,21 +15,30 @@ import './GroceryDetails.scss';
 export const GroceryDetails = (props) => {
   const [quantity, setQuantity] = useState(1);
   const { getGrocery, grocery, loading } = useContext(GroceriesContext);
+  const { addToCart } = useContext(CartContext);
 
   const { id } =  props.match.params;
 
+  
+  const handleQuantityDecrease = () => {
+    setQuantity(quantity - 1)
+  }
+  
+  const handleQuantityIncrease = () => {
+    setQuantity(quantity + 1)
+  }
+
+  const handleAddToCart = async (event, id) => {
+    event.preventDefault();
+    
+    const cartId = await localStorage.getItem('cartId');
+    addToCart(id, { quantity, cartId })
+  }
+  
   useEffect(() => {
     getGrocery(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
-  const handleQuantityDecrease = () => {
-    setQuantity(quantity - 1)
-  }
-
-  const handleQuantityIncrease = () => {
-    setQuantity(quantity + 1)
-  }
 
   return (
     <div className="grocery-details">
@@ -76,7 +86,11 @@ export const GroceryDetails = (props) => {
                     onClick={() => handleQuantityIncrease()}
                   >+</button> <br/><br/>
                   <hr/>
-                  <IconButton className="grocery-details__description__cart" aria-label="add to cart">
+                  <IconButton
+                    className="grocery-details__description__cart"
+                    aria-label="add to cart"
+                    onClick={(event) => handleAddToCart(event, grocery.id)}
+                  >
                     <ShoppingCartIcon /> Add to Cart
                   </IconButton>
                   <hr/>

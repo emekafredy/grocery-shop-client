@@ -56,8 +56,12 @@ export const CartTable = ({ cart }) => {
         <span className="shopping-cart__details-price">  &#8358;{ cart.grocery.finalPrice.toFixed(2) } </span>
       </TableCell>
       <TableCell align="left">
-        <IconButton className="shopping-cart__details__remove" aria-label="add to cart">
-          <DeleteIcon onClick={(event) => handleItemDelete(event)}/>
+        <IconButton
+          className="shopping-cart__details__remove"
+          aria-label="add to cart"
+          onClick={(event) => handleItemDelete(event)}
+        >
+          <DeleteIcon />
         </IconButton>
       </TableCell>
     </TableRow>

@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Grid, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton
 } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 
+import { CartContext } from '../../context/cart/index';
+
 export const Grocery = ({ grocery }) => {
+  const { addToCart } = useContext(CartContext);
+
+  const handleAddToCart = async (event, id) => {
+    event.preventDefault();
+    
+    const cartId = await localStorage.getItem('cartId');
+    addToCart(id, { quantity: 1, cartId })
+  }
+
   return (
     <Grid key={grocery.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Card className="grocery-card">
@@ -27,7 +38,11 @@ export const Grocery = ({ grocery }) => {
           </div>
         </CardContent>
         <CardActions className="grocery-card__actions">
-          <IconButton className="grocery-card__cart" aria-label="add to cart">
+          <IconButton
+            className="grocery-card__cart"
+            aria-label="add to cart"
+            onClick={(event) => handleAddToCart(event, grocery.id)}
+          >
             <ShoppingCartIcon />
           </IconButton>
           <Link to={`/grocery/${grocery.id}`} className="grocery-card__details">

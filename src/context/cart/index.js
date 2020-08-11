@@ -43,10 +43,10 @@ export const CartProvider = props => {
     }
   };
 
-  const addToCart = async (cartData) => {
+  const addToCart = async (groceryId, cartData) => {
     try {
       dispatch(startRequest());
-      const response = await addToCartAPI(cartData);
+      const response = await addToCartAPI(groceryId, cartData);
       const { data } = response;
 
       dispatch(setCart(data));
