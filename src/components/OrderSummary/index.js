@@ -19,7 +19,7 @@ export const OrderSummary = ({ totalCartItems, totalCartPrice }) => {
             <span className="shopping-cart__order-summary-total-value"> &#8358;{ totalCartPrice } </span>
             <hr/>
             <Link className="shopping-cart__order-summary-checkout" to='/'> 
-              Proceed to Checkout
+              Checkout
             </Link>
           </div>
         </CardContent>

@@ -1,16 +1,21 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import './NavBar.scss';
+// component
 import { Categories } from '../Categories';
 
+// context
 import { CategoriesProvider } from '../../context/categories';
 import { AuthContext } from '../../context/auth';
+import { CartContext } from '../../context/cart/index';
+
+import './NavBar.scss';
  
 export const NavBar = () => {
   const [keyword, setKeyword] = useState('');
   const history = useHistory();
   const { user, logoutUser } = useContext(AuthContext);
+  const { cart } = useContext(CartContext);
 
   const handleGroceriesSearch = (event) => {
     event.preventDefault();
@@ -99,7 +104,7 @@ export const NavBar = () => {
             <Link to='/cart' className="navbar__menu-list-item-link">
               <div className="navbar__menu-item-title">
                 <i className="cart arrow down icon"></i>
-                Cart
+                Cart <span className="navbar__total-cart-items"> { cart.totalItems } </span>
               </div>
             </Link>
           </li>

@@ -10,12 +10,7 @@
   }
 
   .shopping-cart__details-price {
-    font-weight: bold;
-    font-size: $global-font * 1.2;
-  }
-  .shopping-cart__details-price-calc {
-    color: $silver-1;
-    font-size: $global-font * 0.8;
-    font-style: italic;
+    font-size: $global-font * 0.9;
+    opacity: 0.7;
   }
 }

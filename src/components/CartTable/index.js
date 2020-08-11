@@ -1,12 +1,28 @@
-import React from 'react';
+import React,  { useContext } from 'react';
 import { IconButton, TableRow, TableCell, Select, MenuItem } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+
+// context
+import { CartContext } from '../../context/cart/index';
 
 import './CartTable.scss';
 
 export const CartTable = ({ cart }) => {
+  const { updateItemQuantity, deleteCartItem } = useContext(CartContext);
+
+  const handleItemUpdate = async (event) => {
+    event.preventDefault();
+    const newQuantity = await event.target.value;
+    await updateItemQuantity(cart.id, newQuantity);
+  }
+
+  const handleItemDelete = async (event) => {
+    event.preventDefault();
+    await deleteCartItem(cart.id);
+  }
+
   return (
-    <TableRow key={cart.id} class="shopping-cart__details">
+    <TableRow key={cart.id} className="shopping-cart__details">
       <TableCell component="th" scope="row">
         <img
           className="shopping-cart__details-image"
@@ -19,11 +35,8 @@ export const CartTable = ({ cart }) => {
       </TableCell>
       <TableCell align="left">
         <Select
-          // open={open}
-          // onClose={handleClose}
-          // onOpen={handleOpen}
           value={cart.quantity}
-          // onChange={handleChange}
+          onChange={(event) => handleItemUpdate(event)}
         >
           <MenuItem value="">
             <em>None</em>
@@ -37,12 +50,14 @@ export const CartTable = ({ cart }) => {
         </Select>
       </TableCell>
       <TableCell align="left">
-        <span className="shopping-cart__details-price">  &#8358;{ cart.grocery.finalPrice } </span>
-        <p className="shopping-cart__details-price-calc">  &#8358;{cart.grocery.price} * {cart.quantity} </p>
+        <span className="shopping-cart__details-price">  &#8358;{ cart.grocery.price.toFixed(2) } </span>
+      </TableCell>
+      <TableCell align="left">
+        <span className="shopping-cart__details-price">  &#8358;{ cart.grocery.finalPrice.toFixed(2) } </span>
       </TableCell>
       <TableCell align="left">
         <IconButton className="shopping-cart__details__remove" aria-label="add to cart">
-          <DeleteIcon />
+          <DeleteIcon onClick={(event) => handleItemDelete(event)}/>
         </IconButton>
       </TableCell>
     </TableRow>

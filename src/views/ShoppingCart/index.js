@@ -44,18 +44,19 @@ export const ShoppingCart = () => {
                   <Table size="small" aria-label="cart items">
                     <TableHead>
                       <TableRow>
-                        <TableCell className="shopping-cart__table-head">IMAGE</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">NAME</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">QUANTITY</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">PRICE</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">ACTION</TableCell>
+                        <TableCell className="shopping-cart__table-head">Image</TableCell>
+                        <TableCell className="shopping-cart__table-head" align="left">Name</TableCell>
+                        <TableCell className="shopping-cart__table-head" align="left">Quantity</TableCell>
+                        <TableCell className="shopping-cart__table-head" align="left">Unit Price</TableCell>
+                        <TableCell className="shopping-cart__table-head" align="left">Total Price</TableCell>
+                        <TableCell className="shopping-cart__table-head" align="left">Action</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {
                         cart.cart?.map(item => {
                           return (
-                            <CartTable cart={ item }/>
+                            <CartTable key={item.id} cart={ item }/>
                           )
                         })
                       }

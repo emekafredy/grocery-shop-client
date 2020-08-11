@@ -46,7 +46,17 @@
         font-size: $global-font;
         transition: 0.5s;
 
-        .navbar__menu-item-title { padding: ($global-padding * 0.5) ($global-padding * 1.5); }
+        .navbar__menu-item-title {
+          padding: ($global-padding * 0.5) ($global-padding * 1.5);
+
+          .navbar__total-cart-items {
+            margin-left: $global-margin;
+            background: $green-1;
+            color: $white;
+            padding: $global-padding * 0.5;
+            border-radius: 100%;
+          }
+        }
 
         &:hover { color: $green-1; }
       }
