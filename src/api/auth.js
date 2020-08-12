@@ -14,3 +14,7 @@ export const loginUserAPI = (loginData) => {
 export const getUserAPI = () => {
   return axios.get(`${baseUrl}/user`)
 }
+
+export const addUserAddressAPI = (name) => {
+  return axios.post(`${baseUrl}/user/address/add`, name)
+}

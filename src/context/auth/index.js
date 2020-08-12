@@ -6,10 +6,14 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
 import AuthReducer from './AuthReducer';
-import { setUser, setErrors, startRequest, completeRequest, setUserProfile } from './AuthActions';
+import {
+  setUser, setErrors, startRequest, completeRequest, setUserProfile
+} from './AuthActions';
 
 // API
-import { registerUserAPI, loginUserAPI, getUserAPI } from '../../api/auth';
+import {
+  registerUserAPI, loginUserAPI, getUserAPI, addUserAddressAPI
+} from '../../api/auth';
 import { setToken } from '../../utils/setToken';
 
 export const AuthContext = createContext();
@@ -73,6 +77,18 @@ export const AuthProvider = props => {
     }
   };
 
+  const addUserAddress = async (name) => {
+    try {
+      dispatch(startRequest());
+      await addUserAddressAPI(name);
+
+      await getUser();
+      dispatch(completeRequest());
+    } catch (err) {
+      dispatch(setErrors(err.response.data));
+    }
+  };
+
   const logoutUser = () => {
     try {
       dispatch(startRequest());
@@ -111,6 +127,7 @@ export const AuthProvider = props => {
         loginUser: loginUser,
         getUser: getUser,
         logoutUser: logoutUser,
+        addUserAddress: addUserAddress,
         errors: state.errors.errors,
         loading: state.loading,
         user,

@@ -61,28 +61,33 @@
           }
         }
       }
-  
-      .profile__shipping-addresses__list {
-        float: left;
-        font-weight: bold;
-      }
-  
-      .profile__shipping-addresses__list-edit {
-        float: right;
-        font-size: $global-font;
-        color: $green-1;
-  
-        &:hover {
-          cursor: pointer;
-          color: $green-2;
-        }
-      }
 
-      .profile__shipping-addresses__list__address-name { text-align: left; }
+      .profile__shipping-addresses__list-card {
+        padding: $global-padding;
+        margin-bottom: $global-margin;
+
+        .profile__shipping-addresses__list {
+          float: left;
+          font-weight: bold;
+        }
+    
+        .profile__shipping-addresses__list-edit {
+          float: right;
+          font-size: $global-font;
+          color: $green-1;
+    
+          &:hover {
+            cursor: pointer;
+            color: $green-2;
+          }
+        }
+  
+        .profile__shipping-addresses__list__address-name { text-align: left; }
+      }
+  
     }
   }
 }
-
 
 // media query
 @include respond-to('small') {

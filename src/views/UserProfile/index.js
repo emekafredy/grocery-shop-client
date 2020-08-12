@@ -1,16 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
+
+// component
+import { ModalComponent } from '../../components/Modal';
+import { AddressForm } from '../../components/AddressForm';
 
 // context
 import { AuthContext } from '../../context/auth';
 
 import './UserProfile.scss';
-import { useEffect } from 'react';
+
 
 export const UserProfile = () => {
-  const { profile, getUser } = useContext(AuthContext);
+  const { profile, getUser, addUserAddress, loading } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
+  const [address, setAddress] = useState("");
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleAddAddress = async (e) => {
+    e.preventDefault();
+
+    await addUserAddress({ name: address });
+    setOpen(false);
+    setAddress('')
+  }
 
   useEffect(() => {
     getUser();
@@ -23,7 +45,7 @@ export const UserProfile = () => {
       <hr/>
       <Card className="profile__card">
         <CardContent>
-          <img className="profile__image" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt=""/>
+          <img className="profile__image" src={ profile?.user.image } alt=""/>
 
           <Card className="profile__account-details">
             <CardHeader title= { <p className="profile__account-details-title"> Account Details </p> } />
@@ -39,8 +61,24 @@ export const UserProfile = () => {
               <div>
                 <span className="profile__shipping-addresses__title"> Shipping Addresses </span>
                 <span className="profile__shipping-addresses__add">
-                  <AddIcon fontSize="large" className="profile__shipping-addresses__add-icon" />
+                  <AddIcon
+                    fontSize="large"
+                    className="profile__shipping-addresses__add-icon"
+                    onClick={handleOpen}
+                  />
                 </span>
+                <ModalComponent
+                  open={open}
+                  handleClose={handleClose}
+                  title="Add Address"
+                >
+                  <AddressForm
+                    onSubmit={(e) => handleAddAddress(e)}
+                    value={address}
+                    onChange={e => setAddress(e.target.value)}
+                    loading={loading}
+                  />
+                </ModalComponent>
               </div>
             } />
             <hr />
@@ -48,14 +86,15 @@ export const UserProfile = () => {
               {
                 profile?.user.addresses.map(address => {
                   return (
-                    <div>
-                      <span className="profile__shipping-addresses__list"> Address 1 </span>
+                    <Card key={address.id} className="profile__shipping-addresses__list-card">
+                      <span className="profile__shipping-addresses__list">
+                        Address { profile?.user.addresses.indexOf(address) + 1 }
+                      </span>
                       <span className="profile__shipping-addresses__list-edit">
                         <EditIcon className="profile__shipping-addresses__add-icon"/>
                       </span> <br/>
-                      <hr />
                       <p className="profile__shipping-addresses__list__address-name"> { address.name } </p>
-                    </div>
+                    </Card>
                   )
                 })
               }

@@ -1,0 +1,24 @@
+@import "../../shared/mixins";
+
+.shipping-address-input {
+  width: 100%;
+  margin-bottom: $global-margin * 2;
+}
+
+.shipping-address-submit-btn {
+  width: 100%;
+  margin-top: $global-margin * 2;
+  background: $green-1;
+  border: none;
+  border-radius: 2px;
+  color: $white;
+  padding: ($global-padding * 0.7) 0;
+  transition: 0.5s;
+
+  &:hover {
+    background: $green-2;
+    cursor: pointer;
+  }
+
+  .submit-loader { color: $white; }
+}
