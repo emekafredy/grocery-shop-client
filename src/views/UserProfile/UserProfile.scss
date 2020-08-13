@@ -18,6 +18,20 @@
       margin-bottom: $global-margin * 5;
     }
 
+    .profile__card__edit {
+      text-align: center;
+      margin-bottom: $global-margin * 2;
+
+      .profile__card__edit-icon {
+        color: $green-1;
+
+        &:hover {
+          cursor: pointer;
+          color: $green-2;
+        }
+      }
+    }
+
     .profile__account-details {
       margin-bottom: $global-margin * 5;
 
@@ -47,11 +61,16 @@
       hr { opacity: 0.3; }
       div { hr { opacity: 0.6; } }
   
-      .profile__shipping-addresses__add {
-        float: right;
-        font-size: $global-font;
-  
-        .profile__shipping-addresses__add-icon {
+      .profile__shipping-addresses__list {
+        float: left;
+        font-weight: bold;
+      }
+
+      .profile__shipping-addresses__list__address-name,
+      .profile__phone { text-align: left; }
+
+      .profile__phone {
+        .profile__phone__add-icon {
           background: $green-1;
           color: $white;
           border-radius: 100%;
@@ -61,28 +80,9 @@
           }
         }
       }
-  
-      .profile__shipping-addresses__list {
-        float: left;
-        font-weight: bold;
-      }
-  
-      .profile__shipping-addresses__list-edit {
-        float: right;
-        font-size: $global-font;
-        color: $green-1;
-  
-        &:hover {
-          cursor: pointer;
-          color: $green-2;
-        }
-      }
-
-      .profile__shipping-addresses__list__address-name { text-align: left; }
     }
   }
 }
-
 
 // media query
 @include respond-to('small') {

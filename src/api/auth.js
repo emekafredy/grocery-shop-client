@@ -14,3 +14,7 @@ export const loginUserAPI = (loginData) => {
 export const getUserAPI = () => {
   return axios.get(`${baseUrl}/user`)
 }
+
+export const updateUserProfileAPI = (data) => {
+  return axios.put(`${baseUrl}/user`, data)
+}
