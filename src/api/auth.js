@@ -15,6 +15,6 @@ export const getUserAPI = () => {
   return axios.get(`${baseUrl}/user`)
 }
 
-export const addUserAddressAPI = (name) => {
-  return axios.post(`${baseUrl}/user/address/add`, name)
+export const updateUserProfileAPI = (data) => {
+  return axios.put(`${baseUrl}/user`, data)
 }

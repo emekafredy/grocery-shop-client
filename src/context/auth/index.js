@@ -12,7 +12,7 @@ import {
 
 // API
 import {
-  registerUserAPI, loginUserAPI, getUserAPI, addUserAddressAPI
+  registerUserAPI, loginUserAPI, getUserAPI, updateUserProfileAPI
 } from '../../api/auth';
 import { setToken } from '../../utils/setToken';
 
@@ -77,12 +77,13 @@ export const AuthProvider = props => {
     }
   };
 
-  const addUserAddress = async (name) => {
+  const updateUserProfile = async (userData) => {
     try {
       dispatch(startRequest());
-      await addUserAddressAPI(name);
+      const response = await updateUserProfileAPI(userData);
+      const { data } = response;
 
-      await getUser();
+      await dispatch(setUserProfile(data));
       dispatch(completeRequest());
     } catch (err) {
       dispatch(setErrors(err.response.data));
@@ -127,11 +128,12 @@ export const AuthProvider = props => {
         loginUser: loginUser,
         getUser: getUser,
         logoutUser: logoutUser,
-        addUserAddress: addUserAddress,
+        updateUserProfile: updateUserProfile,
         errors: state.errors.errors,
         loading: state.loading,
         user,
-        profile: state.profile.profile
+        profile: state.profile.user,
+        userAddress: state.profile.profile?.address
       }}
     >
       {props.children}

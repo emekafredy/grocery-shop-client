@@ -22,6 +22,6 @@ export const completeRequest = () => {
   return { type: COMPLETE_REQUEST };
 }
 
-export const setUserProfile = (profile) => {
-  return { type: SET_USER_PROFILE, payload: { profile } };
+export const setUserProfile = (user) => {
+  return { type: SET_USER_PROFILE, payload: { user } };
 }

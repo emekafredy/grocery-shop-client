@@ -1,13 +1,12 @@
-@import "../../shared/mixins";
+@import "../../../shared/mixins";
 
 .shipping-address-input {
   width: 100%;
-  margin-bottom: $global-margin * 2;
+  margin-top: $global-margin * 5;
 }
 
 .shipping-address-submit-btn {
   width: 100%;
-  margin-top: $global-margin * 2;
   background: $green-1;
   border: none;
   border-radius: 2px;
