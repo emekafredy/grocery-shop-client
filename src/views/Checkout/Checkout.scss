@@ -1,0 +1,52 @@
+@import "../../shared/mixins";
+
+.checkout__container {
+  text-align: center;
+  margin-top: $global-margin * 2;
+
+  
+  .checkout__card {
+    width: 95%;
+    margin: auto;
+
+    .checkout__header { font-family: 'Berkshire Swash'; }
+
+    .checkout__delivery-method-container {
+      padding: 0 $global-padding;
+      border: 1px solid $green-1;
+    }
+  }
+}
+
+// media query
+@include respond-to('small') {
+  .checkout__container {
+    width: 90%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}
+
+@include respond-to('medium') {
+  .checkout__container {
+    width: 80%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}
+
+@include respond-to('large') {
+  .checkout__container {
+    width: 60%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}
+
+@include respond-to('xlarge') {
+  .checkout__container {
+    width: 40%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}

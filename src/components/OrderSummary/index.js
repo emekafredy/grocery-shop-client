@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import './OrderSummary.scss';
 
+import { numberSeperator } from '../../utils';
+
 export const OrderSummary = ({ totalCartItems, totalCartPrice }) => {
   return (
     <>
@@ -16,9 +18,9 @@ export const OrderSummary = ({ totalCartItems, totalCartPrice }) => {
             <span className="shopping-cart__order-summary-total-value"> { totalCartItems } </span>
             <hr/>
             <span className="shopping-cart__order-summary-total"> Total Price </span>
-            <span className="shopping-cart__order-summary-total-value"> &#8358;{ totalCartPrice } </span>
+            <span className="shopping-cart__order-summary-total-value"> &#8358;{ totalCartPrice && numberSeperator(totalCartPrice) } </span>
             <hr/>
-            <Link className="shopping-cart__order-summary-checkout" to='/'> 
+            <Link className="shopping-cart__order-summary-checkout" to='/checkout'> 
               Checkout
             </Link>
           </div>

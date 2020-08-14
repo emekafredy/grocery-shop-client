@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
 
 // component
 import { AddAddressForm } from '../../components/Forms/AddAddressForm';
@@ -71,8 +72,10 @@ export const UserProfile = () => {
         <CardContent>
           <img className="profile__image" src={ profile?.user.image } alt=""/>
 
+          <div className="profile__card__edit">
+            <EditIcon fontSize="large" className="profile__card__edit-icon" onClick={handleOpenProfileUpdateModal} />
+          </div>
           <ProfileUpdateForm
-            handleOpenProfileUpdateModal={handleOpenProfileUpdateModal}
             profileUpdateModalOpen={profileUpdateModalOpen}
             handleCloseProfileUpdateModal={handleCloseProfileUpdateModal}
             handleSubmit={(e) => handleProfileUpdate(e)}

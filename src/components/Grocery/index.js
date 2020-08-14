@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 
 import { CartContext } from '../../context/cart/index';
 
+import { numberSeperator } from '../../utils';
+
 export const Grocery = ({ grocery }) => {
   const { addToCart } = useContext(CartContext);
 
@@ -32,8 +34,8 @@ export const Grocery = ({ grocery }) => {
           <div>
             <h3 className="grocery-card__name"> { grocery.name } </h3>
             <p className="grocery-card__price">
-              <span className="grocery-card__discount-price"> &#8358;{ (grocery.price - grocery.discount).toFixed(2) } </span>
-              { grocery?.discount > 0 ? <span className="grocery-card__main-price"> &#8358;{ grocery.price } </span> : '' }
+              <span className="grocery-card__discount-price"> &#8358;{ numberSeperator((grocery.price - grocery.discount).toFixed(2)) } </span>
+              { grocery?.discount > 0 ? <span className="grocery-card__main-price"> &#8358;{ numberSeperator(grocery.price) } </span> : '' }
             </p>
           </div>
         </CardContent>
