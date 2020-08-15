@@ -7,7 +7,6 @@ import { CartProvider } from './context/cart';
 import { RootView } from './views/RootView';
 
 function App() {
-
   return (
     <AuthProvider>
       <CartProvider>

@@ -1,11 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { Link, Typography, Grid } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import {
+  Typography, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
+} from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 // components
 import { Loader } from '../../components/Loader';
@@ -39,7 +36,7 @@ export const ShoppingCart = () => {
           </BreadCrumbs>
           <div className="shopping-cart__table-container">
             <Grid container spacing={3}>
-              <Grid item xs={12} md={9}>
+              <Grid item xs={12} md={8}>
                 <TableContainer>
                   <Table size="small" aria-label="cart items">
                     <TableHead>
@@ -64,11 +61,17 @@ export const ShoppingCart = () => {
                   </Table>
                 </TableContainer>
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <OrderSummary
                   totalCartItems={cart.totalItems}
                   totalCartPrice={cart.totalPrice}
-                />
+                  cartSummary={true}
+                  totalPriceTitle="Total Price"
+                >
+                  <Link className="order-summary__checkout-link" to='/checkout'> 
+                    Checkout
+                  </Link>
+                </OrderSummary>
               </Grid>
             </Grid>
           </div>

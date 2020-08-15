@@ -1,31 +1,68 @@
 import React from 'react';
-import { Card, CardContent } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Card, CardContent, CardHeader } from '@material-ui/core';
 
 import './OrderSummary.scss';
 
+import { Loader } from '../Loader';
+
 import { numberSeperator } from '../../utils';
 
-export const OrderSummary = ({ totalCartItems, totalCartPrice }) => {
+export const OrderSummary = ({
+  cartSummary,
+  checkoutSummary,
+  totalCartItems,
+  totalCartPrice,
+  loading,
+  totalPriceTitle,
+  children
+}) => {
   return (
     <>
-      <Card>
-        <CardContent>
-          <div className="shopping-cart__order-summary-container">
-            <h2 className="shopping-cart__order-summary-title"> Order Summary </h2>
-            <hr/>
-            <span className="shopping-cart__order-summary-total"> Total Items </span>
-            <span className="shopping-cart__order-summary-total-value"> { totalCartItems } </span>
-            <hr/>
-            <span className="shopping-cart__order-summary-total"> Total Price </span>
-            <span className="shopping-cart__order-summary-total-value"> &#8358;{ totalCartPrice && numberSeperator(totalCartPrice) } </span>
-            <hr/>
-            <Link className="shopping-cart__order-summary-checkout" to='/checkout'> 
-              Checkout
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="order-summary__container">
+        <Card className="order-summary__card">
+          <CardHeader className="order-summary__header" title= { <h3 className="order-summary__header-title"> Summary </h3> } />
+          <CardContent>
+            <div className="order-summary__details-container">
+              {
+                loading ?
+                  <Loader />
+                  : <div>
+                      {
+                        cartSummary ?
+                          <Card className="order-summary__details-card">
+                            <span className="order-summary__details__title"> Total Items </span>
+                            <span className="order-summary__details__value"> { totalCartItems } </span>
+                          </Card> : ''
+                      }
+                      <Card className="order-summary__details-card">
+                        <span className="order-summary__details__title"> { totalPriceTitle } </span>
+                        <span className="order-summary__details__value"> &#8358;{ totalCartPrice && numberSeperator(totalCartPrice) } </span>
+                      </Card>
+
+                      {
+                        checkoutSummary ?
+                          <>
+                            <Card className="order-summary__details-card">
+                              <span className="order-summary__details__title"> Delivery Fee </span>
+                              <span className="order-summary__details__value"> &#8358; 1,200 </span>
+                            </Card>
+
+                            <Card className="order-summary__details-card">
+                              <span className="order-summary__details__title"> Total Price </span>
+                              <span className="order-summary__details__value"> &#8358;{ totalCartPrice && numberSeperator(totalCartPrice + 1200) } </span>
+                            </Card>
+                          </>: ''
+                      }
+
+                      <div className="order-summary__checkout-header">
+                        { children }
+                      </div>
+                    </div>
+              }
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </>
   )
 }

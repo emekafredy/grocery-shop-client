@@ -1,19 +1,79 @@
 @import "../../shared/mixins";
 
-.checkout__container {
-  text-align: center;
+.checkout {
   margin-top: $global-margin * 2;
-
   
-  .checkout__card {
-    width: 95%;
-    margin: auto;
+  .checkout__title {
+    font-family: 'Berkshire Swash';
+    text-align: center;
+  }
+  
+  .checkout__container {
+    text-align: center;
+    margin-top: $global-margin * 2;
+  
+    
+    .checkout__card {
+      width: 95%;
+      margin: auto;
+      background: $silver-4;
+      border: 1px solid $silver-3;
+  
+      .checkout__details-header{
+        background: $white;
 
-    .checkout__header { font-family: 'Berkshire Swash'; }
-
-    .checkout__delivery-method-container {
-      padding: 0 $global-padding;
-      border: 1px solid $green-1;
+        .checkout__details-header-title {font-family: 'Berkshire Swash'; }
+      }
+  
+      .checkout__delivery-method-container {
+        padding: 0 $global-padding;
+        border: 1px solid $silver-2;
+        box-shadow: 1px 2px 5px 0 rgba(49,170,0,.5);
+      }
+  
+      .checkout__selected-items {
+        margin-top: $global-margin * 2;
+  
+        .checkout__selected-items__title {
+          float: left;
+          opacity: 0.65;
+          font-size: $global-font * 0.8;
+          font-weight: bold;
+          padding: 0 ($global-padding * 0.5);
+        }
+  
+        .checkout__selected-items-container {
+          padding: $global-padding;
+          border: 1px solid $silver-2;
+          border-radius: 3px;
+          box-shadow: 1px 2px 5px 0 rgba(49,170,0,.5);
+          text-align: left;
+          background: $white;
+  
+          .checkout__selected-items-card {
+            padding: ($global-padding * 0.3) $global-padding;
+            margin-bottom: $global-margin;
+  
+            .checkout__selected-items__item-name {
+              float: left;
+            }
+  
+            .checkout__selected-items__item-action {
+              float: right;
+              .checkout__selected-items__remove { color: $red-3; }
+            }
+  
+            .checkout__selected-items__item-quantity,
+            .checkout__selected-items__item-price {
+              font-style: italic;
+              font-size: $global-font * 0.9;
+              opacity: 0.65;
+            }
+  
+            .checkout__selected-items__item-quantity { margin-right: $global-margin; }
+          }
+        }
+      }   
     }
   }
 }
@@ -32,12 +92,22 @@
     width: 80%;
     margin: auto;
     margin-top: $global-margin * 5;
+
+    .checkout__card {
+      .checkout__selected-items {
+        .checkout__selected-items__title {
+          float: left;
+          padding: 0 $global-padding;
+          padding-left: 0;
+        }
+      }
+    }
   }
 }
 
 @include respond-to('large') {
   .checkout__container {
-    width: 60%;
+    width: 80%;
     margin: auto;
     margin-top: $global-margin * 5;
   }
@@ -45,7 +115,7 @@
 
 @include respond-to('xlarge') {
   .checkout__container {
-    width: 40%;
+    width: 60%;
     margin: auto;
     margin-top: $global-margin * 5;
   }
