@@ -29,7 +29,7 @@ export const ShoppingCart = () => {
       loading ? <Loader /> 
       : <div>
           <BreadCrumbs>
-            <Link color="inherit" href="/">
+            <Link color="inherit" to="/">
               Home
             </Link>
             <Typography color="textPrimary"> Shopping Cart </Typography>

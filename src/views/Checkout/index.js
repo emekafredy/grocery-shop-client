@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import StripeCheckout from "react-stripe-checkout";
 
 // component
 import { DeliveryMethod } from '../../components/DeliveryMethod';
@@ -13,10 +13,12 @@ import './Checkout.scss';
 // context
 import { AuthContext } from '../../context/auth';
 import { CartContext } from '../../context/cart';
+import { CheckoutContext, CheckoutProvider } from '../../context/checkout';
 
-export const Checkout = () => {
+export const CheckoutComponent = () => {
   const { profile, getUser, updateUserProfile, loading } = useContext(AuthContext);
   const { cart, getCart } = useContext(CartContext);
+  const { getCheckout, makePayment } = useContext(CheckoutContext)
 
   // tab state
   const [deliveryTabActive, setDeliveryTabActive] = useState(true);
@@ -45,9 +47,22 @@ export const Checkout = () => {
     }
   }
 
+  const purchasePrice = deliveryTabActive ? (cart.totalPrice + 1200) : (cart.totalPrice);
+  const onToken = async (token) => {
+    const cartId = localStorage.getItem('cartId');
+    const paymentData = {
+      stripeEmail: token.email,
+      stripeToken: token.id,
+      purchasePrice,
+      cartId
+    };
+    await makePayment(paymentData);
+  }
+
   useEffect(() => {
     getUser();
     getCart();
+    getCheckout();
     setName(profile?.user.name || '');
     setPhone(profile?.user.phone || '');
     setAddress(profile?.user.address || '');
@@ -88,9 +103,7 @@ export const Checkout = () => {
                         handleAddressChange={e => setAddress(e.target.value)}
                       />
 
-                      <SelectedPurchaseItems
-                        cart={cart}
-                      />
+                      <SelectedPurchaseItems cart={cart} />
                     </CardContent>
                   </Card>
                 </div>
@@ -102,10 +115,19 @@ export const Checkout = () => {
                   checkoutSummary={true}
                   totalPriceTitle="Subtotal"
                   loading={loading}
+                  homeDelivery={deliveryTabActive}
                 >
-                  <Link className="order-summary__checkout-link" to='/checkout'> 
-                    Checkout
-                  </Link>
+                  <StripeCheckout
+                    className="order-summary__checkout-link"
+                    label="Make Payment"
+                    panelLabel="Confirm payment"
+                    name="Grocery Shop"
+                    description="Payment for goceries."
+                    amount={ purchasePrice * 100 }
+                    token={onToken}
+                    stripeKey='pk_test_Dd2IUOC4Lxnin6RXIjuSzGeC'
+                    disabled={ !profile?.user.phone || !profile?.user.address }
+                  />
                 </OrderSummary>
               </Grid>
               <Grid item xs={12} lg={2}></Grid>
@@ -114,3 +136,11 @@ export const Checkout = () => {
     </div>
   )
 }
+
+export const Checkout = () => {
+  return (
+    <CheckoutProvider>
+      <CheckoutComponent />
+    </CheckoutProvider>
+  );
+};

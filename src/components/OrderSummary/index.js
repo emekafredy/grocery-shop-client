@@ -14,7 +14,8 @@ export const OrderSummary = ({
   totalCartPrice,
   loading,
   totalPriceTitle,
-  children
+  homeDelivery,
+  children,
 }) => {
   return (
     <>
@@ -36,20 +37,25 @@ export const OrderSummary = ({
                       }
                       <Card className="order-summary__details-card">
                         <span className="order-summary__details__title"> { totalPriceTitle } </span>
-                        <span className="order-summary__details__value"> &#8358;{ totalCartPrice && numberSeperator(totalCartPrice) } </span>
+                        <span className="order-summary__details__value"> ${ totalCartPrice && numberSeperator(totalCartPrice) } </span>
                       </Card>
 
                       {
                         checkoutSummary ?
                           <>
-                            <Card className="order-summary__details-card">
-                              <span className="order-summary__details__title"> Delivery Fee </span>
-                              <span className="order-summary__details__value"> &#8358; 1,200 </span>
-                            </Card>
+                            {
+                              homeDelivery ?
+                                <Card className="order-summary__details-card">
+                                  <span className="order-summary__details__title"> Delivery Fee </span>
+                                  <span className="order-summary__details__value"> $ 1,200 </span>
+                                </Card> : ''
+                            }
 
                             <Card className="order-summary__details-card">
                               <span className="order-summary__details__title"> Total Price </span>
-                              <span className="order-summary__details__value"> &#8358;{ totalCartPrice && numberSeperator(totalCartPrice + 1200) } </span>
+                              <span className="order-summary__details__value">
+                                ${ totalCartPrice && (homeDelivery ? numberSeperator(totalCartPrice + 1200) : numberSeperator(totalCartPrice)) }
+                              </span>
                             </Card>
                           </>: ''
                       }
