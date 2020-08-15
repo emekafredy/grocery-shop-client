@@ -1,34 +1,81 @@
 @import "../../shared/mixins";
 
-.shopping-cart__order-summary-container {
+.order-summary__container {
   text-align: center;
+  margin-top: $global-margin * 2;
 
-  hr {
-    opacity: 0.3;
-    margin-bottom: $global-margin * 2;
-    margin-top: $global-margin * 4;
-  }
+  .order-summary__card {
+    width: 95%;
+    margin: auto;
+    border: 1px solid $silver-3;
+    background: $silver-2;
 
-  .shopping-cart__order-summary-title { text-align: center; }
-  .shopping-cart__order-summary-total { float: left; }
+    .order-summary__header {
+      background: $white;
 
-  .shopping-cart__order-summary-total-value {
-    font-weight: bold;
-    float: right;
-  }
-
-  .shopping-cart__order-summary-checkout {
-    width: 100%;
-    background: $green-1;
-    color: $white;
-    padding: ($global-padding * 0.7) ($global-padding * 5);
-    border-radius: 5px;
-    transition: 0.5s;
-
-    &:hover {
-      cursor: pointer;
-      text-decoration: none;
-      background: $green-2;
+      .order-summary__header-title { font-family: 'Berkshire Swash'; }
     }
+
+    .order-summary__details-container { 
+      padding: $global-padding;
+      border: 1px solid $silver-2;
+      border-radius: 3px;
+      box-shadow: 1px 2px 5px 0 rgba(49,170,0,.5);
+      background: $white;
+
+      .order-summary__details-card {
+        padding: ($global-padding * 1.2) $global-padding;
+        border-radius: 0;
+
+        .order-summary__details__title {
+          float: left;
+          font-size: $global-font * 0.9;
+          font-weight: bold;
+        }
+
+        .order-summary__details__value {
+          float: right;
+          font-size: $global-font * 0.9;
+          font-weight: bold;
+        }
+      }
+
+      .order-summary__checkout-header {
+        margin-top: $global-margin * 2;
+        margin-bottom: $global-margin;
+
+        .order-summary__checkout-link {
+          width: 100%;
+          background: $green-1;
+          color: $white;
+          padding: ($global-padding * 0.7) ($global-padding * 5);
+          border-radius: 5px;
+          transition: 0.5s;
+      
+          &:hover {
+            cursor: pointer;
+            text-decoration: none;
+            background: $green-2;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+@include respond-to('medium') {
+  .order-summary__container {
+    width: 80%;
+    margin: auto;
+    margin-top: $global-margin * 5;
+  }
+}
+
+@include respond-to('large') {
+  .order-summary__container {
+    width: 87%;
+    margin: auto;
+    margin-top: $global-margin * 2;
   }
 }

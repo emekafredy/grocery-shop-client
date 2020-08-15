@@ -1,11 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { Link, Typography, Grid } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import {
+  Typography, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
+} from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 // components
 import { Loader } from '../../components/Loader';
@@ -32,46 +29,60 @@ export const ShoppingCart = () => {
       loading ? <Loader /> 
       : <div>
           <BreadCrumbs>
-            <Link color="inherit" href="/">
+            <Link color="inherit" to="/">
               Home
             </Link>
             <Typography color="textPrimary"> Shopping Cart </Typography>
           </BreadCrumbs>
-          <div className="shopping-cart__table-container">
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={9}>
-                <TableContainer>
-                  <Table size="small" aria-label="cart items">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell className="shopping-cart__table-head">Image</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">Name</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">Quantity</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">Unit Price</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">Total Price</TableCell>
-                        <TableCell className="shopping-cart__table-head" align="left">Action</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {
-                        cart.cart?.map(item => {
-                          return (
-                            <CartTable key={item.id} cart={ item }/>
-                          )
-                        })
-                      }
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <OrderSummary
-                  totalCartItems={cart.totalItems}
-                  totalCartPrice={cart.totalPrice}
-                />
-              </Grid>
-            </Grid>
-          </div>
+          {
+            cart.cart?.length === 0 ?
+              <h4 className="shopping-cart__no-item"> No item(s) in cart yet </h4> :
+              <div className="shopping-cart__table-container">
+                <Grid container spacing={3}>
+                  <Grid item xs={12} md={8}>
+                    <TableContainer>
+                      <Table size="small" aria-label="cart items">
+                        <TableHead>
+                          <TableRow>
+                            <TableCell className="shopping-cart__table-head">Image</TableCell>
+                            <TableCell className="shopping-cart__table-head" align="left">Name</TableCell>
+                            <TableCell className="shopping-cart__table-head" align="left">Quantity</TableCell>
+                            <TableCell className="shopping-cart__table-head" align="left">Unit Price</TableCell>
+                            <TableCell className="shopping-cart__table-head" align="left">Total Price</TableCell>
+                            <TableCell className="shopping-cart__table-head" align="left">Action</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {
+                            cart.cart?.map(item => {
+                              return (
+                                <CartTable key={item.id} cart={ item }/>
+                              )
+                            })
+                          }
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    {
+                      cart.cart?.length === 0 ?
+                        '' :
+                        <OrderSummary
+                          totalCartItems={cart.totalItems}
+                          totalCartPrice={cart.totalPrice}
+                          cartSummary={true}
+                          totalPriceTitle="Total Price"
+                        >
+                          <Link className="order-summary__checkout-link" to='/checkout'> 
+                            Checkout
+                          </Link>
+                        </OrderSummary>
+                    }
+                  </Grid>
+                </Grid>
+              </div>
+          }
         </div>
      }
     </div>

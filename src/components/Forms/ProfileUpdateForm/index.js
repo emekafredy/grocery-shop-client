@@ -1,12 +1,10 @@
 import React from 'react';
-import EditIcon from '@material-ui/icons/Edit';
 
 // component
 import { ModalComponent } from '../../Modal/index';
 import { ProfileInputForm } from '../ProfileInputForm/index';
 
 export const ProfileUpdateForm = ({
-  handleOpenProfileUpdateModal,
   profileUpdateModalOpen,
   handleCloseProfileUpdateModal,
   handleSubmit,
@@ -20,9 +18,6 @@ export const ProfileUpdateForm = ({
 }) => {
   return (
     <div>
-      <div className="profile__card__edit">
-        <EditIcon fontSize="large" className="profile__card__edit-icon" onClick={handleOpenProfileUpdateModal} />
-      </div>
       <ModalComponent
         open={profileUpdateModalOpen}
         handleClose={handleCloseProfileUpdateModal}

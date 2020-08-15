@@ -1,0 +1,117 @@
+@import "../../shared/mixins";
+
+.checkout__delivery-method__tab {
+  .checkout__delivery-method__tab-header {
+    width: 100%;
+    border: 1px solid $silver-2;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.5);
+    padding: 0;
+    float: left;
+
+    li {
+      display: inline;
+      padding: ($global-padding * 0.6) $global-padding;
+      float: left;
+      text-decoration: none;
+      border-right: 1px solid $silver-1;
+
+      &:hover {
+        cursor: pointer;
+        background: $silver-3;
+      }
+    }
+
+    .tab-active { background: $silver-3; }
+  }
+
+  .checkout__delivery-method__tab-content {
+    margin-top: $global-margin * 2.8;
+    margin-bottom: $global-margin;
+    width: 100%;
+    border: 1px solid $silver-2;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.5);
+    padding: $global-padding;
+
+    .delivery-method__home,
+    .delivery-method__pickup {
+      text-align: left;
+      padding-bottom: $global-padding;
+
+      .delivery-method__home-info,
+      .delivery-method__pickup-info {
+        font-weight: bolder;
+        font-style: italic;
+        font-size: $global-font * 0.9;
+        text-decoration: underline;
+      }
+    }
+
+    .delivery-method__home {
+      .delivery-method__home-address-title,
+      .delivery-method__home-phone-title {
+        font-size: $global-font * 0.9;
+        font-weight: bold;
+      }
+
+      .delivery-method__home-address-name,
+      .delivery-method__home-phone-name { font-size: $global-font * 0.95; }
+
+      .delivery-method__home-address-name-warning,
+      .delivery-method__home-phone-name-warning {
+        font-size: $global-font * 0.8;
+        color: $red-3;
+      }
+    }
+
+    .delivery-method__pickup {
+      .delivery-method__pickup-address-title,
+      .delivery-method__pickup-phone-title {
+        font-size: $global-font * 0.9;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.delivery-method__span {
+  float: left;
+  opacity: 0.65;
+  font-size: $global-font * 0.8;
+  font-weight: bold;
+  padding: 0 ($global-padding * 0.5);
+}
+
+.delivery-method__home-info-update {
+  margin-left: $global-margin;
+  color: $green-2;
+  border: none;
+  background: $silver-2;
+  padding: 0 ($global-padding * 0.5);
+  font-size: $global-font;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: 0.5s;
+  float: right;
+
+  &:hover {
+    color: $green-3;
+    cursor: pointer;
+  }
+
+  &:focus { outline: 0; }
+}
+
+@include respond-to('medium') {
+  .delivery-method__span {
+    float: left;
+    padding: 0 $global-padding;
+    padding-left: 0;
+  }
+  
+  .delivery-method__home-info-update {
+    float: right;
+    padding: 0 $global-padding;
+    font-size: $global-font;
+  }
+}

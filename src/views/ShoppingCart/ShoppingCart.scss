@@ -1,5 +1,10 @@
 @import "../../shared/mixins";
 
+.shopping-cart__no-item {
+  text-align: center;
+  margin-top: $global-margin * 5;
+}
+
 .shopping-cart {
   width: 100%;
 

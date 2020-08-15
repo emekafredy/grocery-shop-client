@@ -14,7 +14,7 @@ import {
 import {
   registerUserAPI, loginUserAPI, getUserAPI, updateUserProfileAPI
 } from '../../api/auth';
-import { setToken } from '../../utils/setToken';
+import { setToken } from '../../utils';
 
 export const AuthContext = createContext();
 

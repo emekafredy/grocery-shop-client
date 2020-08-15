@@ -12,6 +12,8 @@ import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 import './GroceryDetails.scss';
 
+import { numberSeperator } from '../../utils';
+
 export const GroceryDetails = (props) => {
   const [quantity, setQuantity] = useState(1);
   const { getGrocery, grocery, loading } = useContext(GroceriesContext);
@@ -64,8 +66,8 @@ export const GroceryDetails = (props) => {
                   <h2> { grocery?.name } </h2>
                   <span className="grocery-details__description__vendor-tag"> Vendor:  </span> <b>{ grocery?.vendor.name }</b>
                   <h2> 
-                    &#8358;{ (grocery?.price - grocery?.discount).toFixed(2) } 
-                    { grocery?.discount > 0 ? <span className="grocery-details__description__main-price"> &#8358;{ grocery?.price } </span> : '' } 
+                    ${ numberSeperator((grocery?.price - grocery?.discount)) } 
+                    { grocery?.discount > 0 ? <span className="grocery-details__description__main-price"> ${ numberSeperator(grocery?.price) } </span> : '' } 
                   </h2>
                   <hr/>
                   <span className="grocery-details__description__quantity-title"> Quantity: </span>

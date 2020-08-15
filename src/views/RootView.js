@@ -12,6 +12,7 @@ import { Login } from './Auth/Login';
 import { GroceryDetails } from './GroceryDetails';
 import { ShoppingCart } from './ShoppingCart';
 import { UserProfile } from './UserProfile';
+import { Checkout } from './Checkout';
 
 
 export const RootView = () => {
@@ -27,6 +28,7 @@ export const RootView = () => {
         <Route exact path="/auth/register" component={ Register } />
         <Route exact path="/auth/login" component={ Login } />
         <PrivateRoute exact path="/user" component={ UserProfile } />
+        <PrivateRoute exact path="/checkout" component={ Checkout } />
       </Switch>
     </Router>
   );

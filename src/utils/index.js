@@ -7,3 +7,7 @@ export const setToken = (token) => {
     delete axios.defaults.headers['authorization'];
   }
 }
+
+export const numberSeperator = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

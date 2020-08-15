@@ -7,6 +7,8 @@ import { CartContext } from '../../context/cart/index';
 
 import './CartTable.scss';
 
+import { numberSeperator } from '../../utils';
+
 export const CartTable = ({ cart }) => {
   const { updateItemQuantity, deleteCartItem } = useContext(CartContext);
 
@@ -50,10 +52,10 @@ export const CartTable = ({ cart }) => {
         </Select>
       </TableCell>
       <TableCell align="left">
-        <span className="shopping-cart__details-price">  &#8358;{ cart.grocery.price.toFixed(2) } </span>
+        <span className="shopping-cart__details-price">  ${ numberSeperator(cart.grocery.price) } </span>
       </TableCell>
       <TableCell align="left">
-        <span className="shopping-cart__details-price">  &#8358;{ cart.grocery.finalPrice.toFixed(2) } </span>
+        <span className="shopping-cart__details-price">  ${ numberSeperator(cart.grocery.finalPrice) } </span>
       </TableCell>
       <TableCell align="left">
         <IconButton
