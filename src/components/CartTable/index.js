@@ -52,10 +52,10 @@ export const CartTable = ({ cart }) => {
         </Select>
       </TableCell>
       <TableCell align="left">
-        <span className="shopping-cart__details-price">  &#8358;{ numberSeperator(cart.grocery.price.toFixed(2)) } </span>
+        <span className="shopping-cart__details-price">  &#8358;{ numberSeperator(cart.grocery.price) } </span>
       </TableCell>
       <TableCell align="left">
-        <span className="shopping-cart__details-price">  &#8358;{ numberSeperator(cart.grocery.finalPrice.toFixed(2)) } </span>
+        <span className="shopping-cart__details-price">  &#8358;{ numberSeperator(cart.grocery.finalPrice) } </span>
       </TableCell>
       <TableCell align="left">
         <IconButton

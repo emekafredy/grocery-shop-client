@@ -66,7 +66,7 @@ export const GroceryDetails = (props) => {
                   <h2> { grocery?.name } </h2>
                   <span className="grocery-details__description__vendor-tag"> Vendor:  </span> <b>{ grocery?.vendor.name }</b>
                   <h2> 
-                    &#8358;{ numberSeperator((grocery?.price - grocery?.discount).toFixed(2)) } 
+                    &#8358;{ numberSeperator((grocery?.price - grocery?.discount)) } 
                     { grocery?.discount > 0 ? <span className="grocery-details__description__main-price"> &#8358;{ numberSeperator(grocery?.price) } </span> : '' } 
                   </h2>
                   <hr/>

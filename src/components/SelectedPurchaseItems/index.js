@@ -33,7 +33,7 @@ export const SelectedPurchaseItems = ({
                   </span>
                   <br />
                   <span className="checkout__selected-items__item-quantity">  Qty: { item.quantity } </span>
-                  <span className="checkout__selected-items__item-price">  Price: &#8358; { numberSeperator(item.grocery.finalPrice.toFixed(2)) } </span>
+                  <span className="checkout__selected-items__item-price">  Price: &#8358; { numberSeperator(item.grocery.finalPrice) } </span>
                 </Card>
               )
             })

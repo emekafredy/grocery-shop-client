@@ -58,55 +58,59 @@ export const Checkout = () => {
     <div className="checkout">
       <h2 className="checkout__title"> Checkout </h2>
       <hr />
-      <Grid container spacing={3}>
-        <Grid item xs={12} lg={7}>
-          <div className="checkout__container">
-            <Card className="checkout__card">
-              <CardHeader className="checkout__details-header" title= { <h3 className="checkout__details-header-title"> Cart & Account Details </h3> } />
-              <CardContent>
-                <DeliveryMethod
-                  userAddress={ profile?.user.address }
-                  userPhone={ profile?.user.phone }
-                  userName={profile?.user.name}
-                  handleOpenProfileUpdateModal={handleOpenProfileUpdateModal}
-                  loading={loading}
-                  deliveryTabActive={deliveryTabActive}
-                  handleTabChange={handleTabChange}
-                />
-                <ProfileUpdateForm
-                  profileUpdateModalOpen={profileUpdateModalOpen}
-                  handleCloseProfileUpdateModal={handleCloseProfileUpdateModal}
-                  handleSubmit={(e) => handleProfileUpdate(e)}
-                  phone={phone}
-                  handleChange={e => setPhone(e.target.value)}
-                  name={name}
-                  handleNameChange={e => setName(e.target.value)}
-                  address={address}
-                  handleAddressChange={e => setAddress(e.target.value)}
-                />
+      {
+        (cart.cart?.length === 0) ?
+          <h3 className="checkout__no-item-title"> Not item(s) in cart yet </h3>
+          : <Grid container spacing={3}>
+              <Grid item xs={12} lg={7}>
+                <div className="checkout__container">
+                  <Card className="checkout__card">
+                    <CardHeader className="checkout__details-header" title= { <h3 className="checkout__details-header-title"> Cart & Account Details </h3> } />
+                    <CardContent>
+                      <DeliveryMethod
+                        userAddress={ profile?.user.address }
+                        userPhone={ profile?.user.phone }
+                        userName={profile?.user.name}
+                        handleOpenProfileUpdateModal={handleOpenProfileUpdateModal}
+                        loading={loading}
+                        deliveryTabActive={deliveryTabActive}
+                        handleTabChange={handleTabChange}
+                      />
+                      <ProfileUpdateForm
+                        profileUpdateModalOpen={profileUpdateModalOpen}
+                        handleCloseProfileUpdateModal={handleCloseProfileUpdateModal}
+                        handleSubmit={(e) => handleProfileUpdate(e)}
+                        phone={phone}
+                        handleChange={e => setPhone(e.target.value)}
+                        name={name}
+                        handleNameChange={e => setName(e.target.value)}
+                        address={address}
+                        handleAddressChange={e => setAddress(e.target.value)}
+                      />
 
-                <SelectedPurchaseItems
-                  cart={cart}
-                />
-              </CardContent>
-            </Card>
-          </div>
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <OrderSummary
-            totalCartItems={cart.totalItems}
-            totalCartPrice={cart.totalPrice}
-            checkoutSummary={true}
-            totalPriceTitle="Subtotal"
-            loading={loading}
-          >
-            <Link className="order-summary__checkout-link" to='/checkout'> 
-              Checkout
-            </Link>
-          </OrderSummary>
-        </Grid>
-        <Grid item xs={12} lg={2}></Grid>
-      </Grid>
+                      <SelectedPurchaseItems
+                        cart={cart}
+                      />
+                    </CardContent>
+                  </Card>
+                </div>
+              </Grid>
+              <Grid item xs={12} lg={3}>
+                <OrderSummary
+                  totalCartItems={cart.totalItems}
+                  totalCartPrice={cart.totalPrice}
+                  checkoutSummary={true}
+                  totalPriceTitle="Subtotal"
+                  loading={loading}
+                >
+                  <Link className="order-summary__checkout-link" to='/checkout'> 
+                    Checkout
+                  </Link>
+                </OrderSummary>
+              </Grid>
+              <Grid item xs={12} lg={2}></Grid>
+            </Grid>
+      }
     </div>
   )
 }
